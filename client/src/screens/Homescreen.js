@@ -5,18 +5,21 @@ import { Await } from 'react-router-dom';
 
 function Homescreen() {
 
-const[rooms,setrooms]= useState([])
-  useEffect(async() => {
-    try {
-      const data = (await axios.get('/api/rooms/getallrooms')).data 
-     setrooms(data)
-    } catch (error) {
-      console.log(error)
-    }
-    
-  
-   
-  }, [])
+
+const getAllRooms = async() => {
+  try {
+    const data = (await axios.get('/api/rooms/getallrooms')).data 
+    setrooms(data)
+    console.log("hii",data);
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+  useEffect(()=>{
+    getAllRooms();
+  },[])
+
   
 
   return (
